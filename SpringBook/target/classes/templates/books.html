@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!-- to call thymeleaf-->
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+<div class="container" style="background-color:mediumpurple;">
+    <h1 style="text-align: center; color: aliceblue;">Book List</h1>
+</div>
+        <table class="center" style="border-style: solid; border-color: mediumpurple; width:30%; height:60%"> <!-- request for tabular data -->
+            <thead> <!-- element defines a set of rows defining the head of the columns of the table-->
+            <tr style="text-align: center; background-color: mediumpurple; color: aliceblue"> <!--element defines a row of cells in a table-->
+                <!-- th mean table header-->
+                <th>ID</th> <!--element defines a cell as header of a group of table cells-->
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Isbn</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- tr mean table rows -->
+            <tr th:each="book : ${books}">  <!--by using thymeleaf, for each book place take one of the books in the model-->
+                <!-- td mean table data-->
+                <td th:text="${book.id}"></td> <!-- thymeleaf will generate the elements -->
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.publisher}"></td>
+                <td th:text="${book.ISBN}"></td>
+                <td><a th:href="@{/edit/{id}(id=${book.id})}"  style="color: mediumpurple">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${book.id})}"  style="color: mediumpurple">Delete</a></td>
+            </tr>
+            </tbody> <!--element encapsulates a set of table rows, indicating that they comprise the body of the table-->
+        </table>
+<div>
+    <p><a href="/add" style="color: mediumpurple">Add a new book</a></p>
+</div>
+
+<ul>
+    <li><a href="/borrowers">Go to Borrower List</a></li>
+</ul>
+</body>
+</html>
