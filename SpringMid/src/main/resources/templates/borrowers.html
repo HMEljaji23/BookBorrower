@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Borrowers</title>
+</head>
+<body>
+<div class="container" style="background-color:mediumpurple;">
+  <h1 style="text-align: center; color: aliceblue;">Borrower List</h1>
+</div>
+<table class="center" style="border-style: solid; border-color: mediumpurple; width:30%; height:60%">
+  <thead>
+  <tr style="text-align: center; background-color: mediumpurple; color: aliceblue">
+
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr th:each="borrower : ${borrowers}">
+    <td th:text="${borrower.id}"></td>
+    <td th:text="${borrower.name}"></td>
+    <td th:text="${borrower.email}"></td>
+    <td th:text="${borrower.phone_number}"></td>
+    <td><a th:href="@{/editBorr/{id}(id=${borrower.id})}"  style="color: mediumpurple">Edit</a></td>
+    <td><a th:href="@{/deleteBorr/{id}(id=${borrower.id})}"  style="color: mediumpurple">Delete</a></td>
+  </tr>
+  </tbody>
+</table>
+<div>
+  <p><a href="/addBorr" style="color: mediumpurple">Add a new borrower</a></p>
+</div>
+
+<ul>
+  <li><a href="/books">Go to Book List again</a></li>
+</ul>
+</body>
+</html>
