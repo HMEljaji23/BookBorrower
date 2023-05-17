@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Book</title>
+</head>
+<body>
+<form action="#"
+      th:action="@{/update/{id}(id=${books.id})}"
+      th:object="${books}"
+      method="post">
+
+    <label for="title">Title</label>
+    <input type="text" th:field="${books.title}" id="title" placeholder="Title">
+    <span th:if="${#fields.hasErrors('title')}" th:errors="${books.title}"></span>
+
+    <label for="author">Author</label>
+    <input type="text" th:field="${books.author}" id="author" placeholder="Author">
+    <span th:if="${#fields.hasErrors('author')}" th:errors="${books.author}"></span>
+
+    <label for="publisher">Publisher</label>
+    <input type="text" th:field="${books.publisher}" id="publisher" placeholder="Publisher">
+    <span th:if="${#fields.hasErrors('publisher')}" th:errors="${books.publisher}"></span>
+
+<!--    <label for="borrower">Borrower</label>-->
+<!--    <input type="text" th:field="${books.borrower}" id="borrower" placeholder="Borrower">-->
+<!--    <span th:if="${#fields.hasErrors('borrower')}" th:errors="${books.borrower}"></span>-->
+
+    <label for="ISBN">ISBN</label>
+    <input type="text" th:field="${books.ISBN}" id="ISBN" placeholder="ISBN">
+    <span th:if="${#fields.hasErrors('ISBN')}" th:errors="${books.ISBN}"></span>
+
+    <input type="submit" value="Update Book">
+</form>
+</body>
+</html>
