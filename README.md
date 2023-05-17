@@ -128,12 +128,12 @@ go to (http://localhost:8080/h2) with URL:(jdbc:h2:mem:test) to see the tables :
   
 ----------------------------------------------------------------------------------------------------------------------------------------
 # How to run the application (FINAL) :
-  * go to :
+  go to :
   - (http://localhost:8080/)
   - (http://localhost:8080/login)
   - (http://localhost:8080/register)
   - (http://localhost:8080/logout)
   - (http://localhost:8080/upload/1)
   
-  * check Rest API in Postman
+  check Rest API in Postman
   
