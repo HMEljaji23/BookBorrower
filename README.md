@@ -43,7 +43,7 @@ REST API: Create a REST API that allows other applications to access the Library
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
-# How to build this application:
+# How to build this application (MIDTERM):
 1) Create spring project with dependencies (And you can see this dependencies in pom.xml file)
 2) Create new package "modules" and 2 java files "Book" and "Borrower" inside it 
 3) Inside "Book" class in "Book" file, add required fields (instance variables) -> id (Long)/title,author,publisher,ISBN (String) 
@@ -84,6 +84,55 @@ Then create Set<Book> (with HashSet initializing) and generate two constructors 
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
-# How to run the application :
+# How to run the application (MIDTERM) :
 go to (http://localhost:8080/books) to see the book list and move from navigation bar to see borrower list or by (http://localhost:8080/borrowers)
 go to (http://localhost:8080/h2) with URL:(jdbc:h2:mem:test) to see the tables : BOOK, BORROWER, and BOOK_BORROWER
+  
+  
+  
+---------------------------------------------------------------------------------------------------------------------------------------
+ # How to build this application (FINAL):
+ # REST API 
+  1) Create new package "service" and create 4 Java classes for book and borrower (2 of them are Interfaces)
+  2) Make the java class "BookServicelmpl" implements the interface "BookService" and assign the class as (@Service) and call the repository "BookRepository" with private value, then inside "BookServicelmpl" method add a book and fill the required fields to the Book Set and save it in the repository
+  3) In "BookServicelmpl", create 6 methods: findAll/saveBook/updateBookById/findById/deleteById/patchBookById (the initialize of this methods in BookService"
+  4) Make the java class "BorrowerServicelmpl" implements the interface "BorrowerService" and make the same steps which we did for "BookServicelmpl"
+  5) Create new Java class "APIContr" in "controllers" package and assign the "APIContr" method as (@RestController @RequestMapping @RequiredArgsConstructor @Slf4j), then call "BookService" with private final value
+  6) Create Rest API methods (GetMapping(two times) /PostMapping/PutMapping/PatchMapping/DeleteMapping) for both book and borrower with url ("/api/v1/book") (but add the /{bookId} for Patch/one of GetMapping/PutMapping/DeleteMapping) and change "book" to "borrower" in the url for the borrower
+  7) Call the methods in Servicelmpl with the service
+  
+ # Authentication 
+  1) Add two dependencies "security" and "security-test" in "pom.xml"
+  2) Create the user name and user password in "application.properties"
+  
+ # Authorization 
+  1) Create "WebSecurityConfig" java class in new package "config" and assign the class as (@Configuration @EnableWebSecurity) and create inside the class new method "SecurityFilterChain" and assign it as (@Bean) to verifiying the user by ("/admin") url 
+  2) Create java class "User" in "moduels" package and assign the class as (@Entity @Table(name = "auth_user") @Data @Builder @AllArgsConstructor)
+  3) Add required fields (instance variables) -> id (Long) and assign it as (@Id @GeneratedValue)/username,password,name,email,phone_number (String) and generate empty constructor, equals and hascode
+  4) Create jave interface file "UserRepo" inside "repositories", and extends it from (CrudRepository)
+  5) Create new java class file "AuthorizationContr" inside "controllers" package and assign the class as (@Controller) and call "UserRepo" as a private and assign it as (@Autowired)
+  6) Create (@GetMapping (3 times :login,register and logout)/@PostMapping for register)
+  7) Create 3 html files (login,register and logout)
+  8) Login will ask the username and the password
+  9) Register will ask to fill username,password,name,email and phone_number
+  10) Logout will ask if we are sure to complete the logout, if we'll click the button then it will logout
+  
+# Upload Image 
+  1) Create private parameter String "img" in "Book" file
+  2) Create new file "img" in "resources\static" to save the image there
+  3) In "BookController", create public static String "UPLOAD_DIRECTORY" and add the source url for "img" file
+  4) Create (@GetMapping and @PostMapping) with ("/upload/{id}") url to take or get the image from files then save it on the file "img" which we create 
+  5) Add new field (upload) in "books" html file
+  6) Create new html file "imageUpload" in "templates" with two buttons (Choose file) and (Upload image)
+  
+  
+----------------------------------------------------------------------------------------------------------------------------------------
+# How to run the application (FINAL) :
+  go to :
+  - (http://localhost:8080/)
+  - (http://localhost:8080/login)
+  - (http://localhost:8080/register)
+  - (http://localhost:8080/logout)
+  - (http://localhost:8080/upload/1)
+  check Rest API in Postman
+  
